@@ -16,7 +16,7 @@ public class StudentService implements Service {
             int admisionScore = Scan.getScannerInt("Enter your admission score :");
             LocalDate birhdate = LocalDate.parse(Scan.getScannerString("Enter your birh date: "),dateTimeFormatter);
             LocalDate admisionDate = LocalDate.parse(Scan.getScannerString("Enter your admision date: "), dateTimeFormatter);
-            studentList.add(new Student(name, surName, admisionScore, birhdate, admisionDate));
+            studentList.add(new Student(name, surName, birhdate, admisionScore, admisionDate));
         }
     }
 

@@ -3,15 +3,12 @@ import java.time.LocalDate;
 public class Person {
     private int ID = 1;
     private String name;
-    private String surname;
+    private String surName;
+    private final LocalDate birthdate;
 
-
-
-
-    private LocalDate birthdate;
     public Person(String name, String surname, LocalDate birthdate) {
         this.name = name;
-        this.surname = surname;
+        this.surName = surname;
         this.birthdate = birthdate;
     }
 
@@ -27,21 +24,23 @@ public class Person {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getSurName() {
+        return surName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setSurName(String surName) {
+        this.surName = surName;
     }
 
     @Override
     public int hashCode() {
         return ID++;
     }
-
     @Override
     public boolean equals(Object obj) {
         return super.equals(obj);
+    }
+    public String toString() {
+        return "ID: " + ID + " Name: " + name + " Surname: " + surName + "BirthDate: " + birthdate;
     }
 }
