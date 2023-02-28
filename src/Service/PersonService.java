@@ -4,13 +4,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class PersonService implements Service {
+public class PersonService implements Service {
     private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-    private List<Student> students = new ArrayList<>();
-    private List<Teacher> teachers = new ArrayList<>();
+    public static List<Student> students = new ArrayList<>();
+    public static List<Teacher> teachers = new ArrayList<>();
 
 
-    public void addByDefaultStuden() {
+    public static void  addByDefaultStuden() {
         Student nijat = new Student("Nijat", "Guliyev", 430, LocalDate.of(1994, 5, 15), LocalDate.of(2015, 1, 20));
         Student fariz = new Student("Fariz", "Hasanov", 418, LocalDate.of(1999, 2, 21), LocalDate.of(2014, 9, 29));
         Student mehman = new Student("Mehman", "Osmanov", 510, LocalDate.of(1998, 6, 14), LocalDate.of(2011, 6, 12));
@@ -20,7 +20,7 @@ public abstract class PersonService implements Service {
         students.add(fariz);
         students.add(mehman);
         students.add(ashraf);
-        System.out.println(students.add(ayhan));
+        students.add(ayhan);
         Teacher ismayil = new Teacher("Ismayil", "Azizov", LocalDate.of(1994, 4, 12), "Java practic");
         Teacher ulvu = new Teacher("Ulvu", "Aghacanov", LocalDate.of(1992, 6, 28), "Java theory");
         teachers.add(ismayil);
@@ -46,10 +46,11 @@ public abstract class PersonService implements Service {
     @Override
     public void showAll(Person person) {
         if (person instanceof Student) {
-            System.out.println(students.get(2).getName());
+            System.out.println(students.toString());
         } else if (person instanceof Teacher) {
             System.out.println(teachers.toString());
         }
+        System.out.println();
     }
 
     @Override
@@ -76,16 +77,16 @@ public abstract class PersonService implements Service {
         if (person instanceof Teacher) {
             for (int i = 0; i < teachers.size(); i++) {
                 if (teachers.get(i).hashCode() == id) {
-                    System.out.println(teachers.get(i).toString());
+                    System.out.println(teachers.get(i));
                 }
             }
         } else if (person instanceof Student) {
             for (int i = 0; i < students.size(); i++) {
                 if (students.get(i).hashCode() == id) {
-                    System.out.println(students.get(i).toString());
-
+                    System.out.println(students.get(i));
                 }
             }
         }
+        System.out.println();
     }
 }

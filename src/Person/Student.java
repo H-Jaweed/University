@@ -17,7 +17,7 @@ public class Student extends Person {
 
     @Override
     public String toString() {
-        return "ID: " + this.hashCode() + " Name: " + super.getName() + " Surname: " + super.getSurName() +
+        return "\nID: " + this.hashCode() + " Name: " + super.getName() + " Surname: " + super.getSurName() +
                 " BirthDate: " + super.getBirthdate() + " Score: " + this.admisionScore + " Admision Date: " + this.admisionDate;
     }
 
