@@ -30,7 +30,7 @@ public abstract class Person {
         return fistNumber + secondNumber;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 

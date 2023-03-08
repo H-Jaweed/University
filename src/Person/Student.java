@@ -15,6 +15,14 @@ public class Student extends Person {
         this.admisionScore = admisionScore;
     }
 
+    public int getAdmisionScore() {
+        return admisionScore;
+    }
+    public LocalDate getAdmisionDate() {
+        return admisionDate;
+    }
+
+
     @Override
     public String toString() {
         return "\nID: " + this.hashCode() + " Name: " + super.getName() + " Surname: " + super.getSurName() +

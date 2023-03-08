@@ -4,11 +4,11 @@ import java.time.LocalDate;
 
 
 public class Teacher extends Person {
-   public Teacher() {
-       super();
-   }
+    public Teacher() {
+        super();
+    }
+
     private String subject;
-   private  int ID;
 
     public Teacher(String name, String surname, LocalDate birthdate, String subject) {
         super(name, surname, birthdate);
@@ -17,10 +17,6 @@ public class Teacher extends Person {
 
     public String getSubject() {
         return subject;
-    }
-
-    public int getID() {
-        return ID;
     }
 
     @Override

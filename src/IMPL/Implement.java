@@ -2,16 +2,18 @@ package IMPL;
 
 import Person.Student;
 import Person.Teacher;
-import Service.PersonService;
+import Service.AddPersonService;
+import Service.SearchPersonService;
+import Service.ShowAllPersonService;
 
 
 public class Implement {
-   static Student student = new Student();
-   static Teacher teacher = new Teacher();
-   static PersonService personService = new PersonService();
+    //static Student student = new Student();
+    //static Teacher teacher = new Teacher();
+    //  static PersonService personService = new PersonService();
 
     public static void ImplementProject() {
-        PersonService.addByDefaultStuden();
+        // PersonService.addByDefaultStuden();
         boolean exit = true;
 
         while (exit) {
@@ -19,28 +21,28 @@ public class Implement {
             int selectedMenu = Scan.getScannerInt("Choose menu: ");
             switch (selectedMenu) {
                 case 1:
-                    personService.add(student);
+                    AddPersonService.add("Teacher");
                     break;
                 case 2:
-                    personService.add(teacher);
+                    AddPersonService.add("Student");
                     break;
                 case 3:
-                    personService.showAll(teacher);
+                    ShowAllPersonService.showAll("Teacher");
                     break;
                 case 4:
-                    personService.showAll(student);
+                    ShowAllPersonService.showAll("Student");
                     break;
                 case 5:
-                    personService.searchByID(teacher);
+                    SearchPersonService.searchPerson("Teacher");
                     break;
                 case 6:
-                    personService.searchByID(student);
+                    SearchPersonService.searchPerson("Student");
                     break;
                 case 7:
-                    personService.deleteByID(student);
+                    //    personService.deleteByID(student);
                     break;
                 case 8:
-                    personService.deleteByID(teacher);
+                    //      personService.deleteByID(teacher);
                     break;
                 case 9:
                     exit = false;
@@ -50,34 +52,4 @@ public class Implement {
             }
         }
     }
- /*   public static void SortedTeacher(int menuIndex) {
-        switch (menuIndex) {
-            case 1:
-                PersonService.teachers.sort(new sortByName());
-                personService.showAll(teacher);
-                break;
-            case 2:
-                System.out.println("Menu2");
-                break;
-            default:
-                System.out.println("Wrong operator!!!");
-                break;
-        }
-    }
-
-    public static void SortedStudent(int menuIndex) {
-        switch (menuIndex) {
-            case 1:
-                PersonService.students.sort(new sortByID());
-                personService.showAll(student);
-                break;
-            case 2:
-                System.out.println("Menu2");
-                break;
-            default:
-                System.out.println("Wrong operator!!!");
-                break;
-        }
-    }*/
-
 }

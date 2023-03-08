@@ -1,3 +1,4 @@
+/*
 package Service;
 
 import IMPL.Scan;
@@ -113,3 +114,4 @@ public class PersonService implements Service {
         return SortType.valueOf(byDefaultSortValue);
     }
 }
+*/
