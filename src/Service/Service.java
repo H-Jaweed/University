@@ -1,4 +1,6 @@
+package Service;
 
+import Person.Person;
 public interface Service {
 
     void add(Person person);

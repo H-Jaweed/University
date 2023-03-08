@@ -1,12 +1,15 @@
+package Person;
+
 import java.time.LocalDate;
 
-public abstract class Person  {
-    private int ID;
+
+public abstract class Person {
     private String name;
     private String surName;
-    private  LocalDate birthdate;
+    private LocalDate birthdate;
 
-    public Person() {}
+    public Person() {
+    }
 
 
     public Person(String name, String surname, LocalDate birthdate) {
@@ -17,17 +20,17 @@ public abstract class Person  {
 
     @Override
     public int hashCode() {
-        int fistNumber=0,secondNumber=0;
+        int fistNumber = 0, secondNumber = 0;
         for (int i = 0; i < name.length(); i++) {
-           fistNumber =  name.charAt(i);
+            fistNumber = name.charAt(i);
         }
         for (int i = 0; i < surName.length(); i++) {
             secondNumber = surName.charAt(i);
         }
-        return ID = fistNumber + secondNumber;
+        return fistNumber + secondNumber;
     }
 
-    public String getName() {
+    public int getName() {
         return name;
     }
 

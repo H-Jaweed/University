@@ -1,11 +1,11 @@
+package Person;
 import java.time.LocalDate;
+
 
 public class Student extends Person {
     public Student() {
 
     }
-
-    private int ID;
     private int admisionScore;
     private LocalDate admisionDate;
 

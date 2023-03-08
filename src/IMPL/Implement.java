@@ -1,3 +1,10 @@
+package IMPL;
+
+import Person.Student;
+import Person.Teacher;
+import Service.PersonService;
+
+
 public class Implement {
    static Student student = new Student();
    static Teacher teacher = new Teacher();
@@ -36,16 +43,6 @@ public class Implement {
                     personService.deleteByID(teacher);
                     break;
                 case 9:
-                    Menu.sortedTeacherMenu();
-                    int sortedTeacherMenuIndex = Scan.getScannerInt("Choose sort type: ");
-                    SortedTeacher(sortedTeacherMenuIndex);
-                    break;
-                case 10:
-                    Menu.sortedStudenMenu();
-                    int sortedStudentMenuIndex = Scan.getScannerInt("Choose sort type: ");
-                    SortedStudent(sortedStudentMenuIndex);
-                    break;
-                case 11:
                     exit = false;
                     break;
                 default:
@@ -53,7 +50,7 @@ public class Implement {
             }
         }
     }
-    public static void SortedTeacher(int menuIndex) {
+ /*   public static void SortedTeacher(int menuIndex) {
         switch (menuIndex) {
             case 1:
                 PersonService.teachers.sort(new sortByName());
@@ -67,6 +64,7 @@ public class Implement {
                 break;
         }
     }
+
     public static void SortedStudent(int menuIndex) {
         switch (menuIndex) {
             case 1:
@@ -80,5 +78,6 @@ public class Implement {
                 System.out.println("Wrong operator!!!");
                 break;
         }
-    }
+    }*/
+
 }

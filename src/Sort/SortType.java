@@ -1,4 +1,6 @@
+package Sort;
 public enum SortType {
+    BYID,
     BYNAME,
     BYSURNAME,
     BYDATE,

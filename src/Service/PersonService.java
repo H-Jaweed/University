@@ -1,16 +1,23 @@
+package Service;
 
+import IMPL.Scan;
+import Person.Person;
+import Person.Student;
+import Person.Teacher;
+import Sort.*;
+
+import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+
 
 public class PersonService implements Service {
-    private DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-    public static List<Student> students = new ArrayList<>();
-    public static List<Teacher> teachers = new ArrayList<>();
+    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-
-    public static void  addByDefaultStuden() {
+    public static void addByDefaultStuden() {
         Student nijat = new Student("Nijat", "Guliyev", 430, LocalDate.of(1994, 5, 15), LocalDate.of(2015, 1, 20));
         Student fariz = new Student("Fariz", "Hasanov", 418, LocalDate.of(1999, 2, 21), LocalDate.of(2014, 9, 29));
         Student mehman = new Student("Mehman", "Osmanov", 510, LocalDate.of(1998, 6, 14), LocalDate.of(2011, 6, 12));
@@ -28,26 +35,15 @@ public class PersonService implements Service {
     }
 
     @Override
-    public void add(Person person) {
-        String name = Scan.getScannerString("Enter Name :");
-        String surName = Scan.getScannerString("Enter SurName :");
-        LocalDate birhdate = LocalDate.parse(Scan.getScannerString("Enter your birh date: "), dateTimeFormatter);
-        if (person instanceof Student) {
-            int admisionScore = Scan.getScannerInt("Enter your admission score :");
-            LocalDate admisionDate = LocalDate.parse(Scan.getScannerString("Enter your admision date: "), dateTimeFormatter);
-            students.add(new Student(name, surName, admisionScore, birhdate, admisionDate));
-        } else if (person instanceof Teacher) {
-            String subject = Scan.getScannerString("Enter subject: ");
-            teachers.add(new Teacher(name, surName, birhdate, subject));
-        }
-        System.out.println();
-    }
+
 
     @Override
     public void showAll(Person person) {
         if (person instanceof Student) {
+            sortPersonList(defaultSort(), students);
             System.out.println(students.toString());
         } else if (person instanceof Teacher) {
+            sortPersonList(defaultSort(), teachers);
             System.out.println(teachers.toString());
         }
         System.out.println();
@@ -59,16 +55,19 @@ public class PersonService implements Service {
         if (person instanceof Teacher) {
             for (int i = 0; i < teachers.size(); i++) {
                 if (teachers.get(i).hashCode() == id) {
+                    System.out.println("ID: " + teachers.get(i).getID() + " remove succcessfully!");
                     teachers.remove(i);
                 }
             }
         } else if (person instanceof Student) {
             for (int i = 0; i < students.size(); i++) {
                 if (students.get(i).hashCode() == id) {
+                    System.out.println("ID: " + students.get(i).hashCode() + " remove succcessfully!");
                     students.remove(i);
                 }
             }
-        }
+        } else System.err.println("ID not found!!!");
+        System.out.println();
     }
 
     @Override
@@ -86,7 +85,31 @@ public class PersonService implements Service {
                     System.out.println(students.get(i));
                 }
             }
-        }
+        } else System.err.println("ID not found!!!");
         System.out.println();
+    }
+
+    public void sortPersonList(Enum sortedEnumList, List<? extends Person> list) {
+        if (sortedEnumList.name() == SortType.BYID.name()) {
+            list.sort(new sortByID());
+        } else if (sortedEnumList.name() == SortType.BYNAME.name()) {
+            list.sort(new sortByName());
+        } else if (sortedEnumList.name() == SortType.BYSURNAME.name()) {
+            list.sort(new sortBySurname());
+        } else if (sortedEnumList.name() == SortType.BYDATE.name()) {
+            list.sort(new sortByDate());
+        }
+    }
+
+    public Enum defaultSort() {
+        String byDefaultSortValue = null;
+        try (FileReader reader = new FileReader("./src/Sort/DefaultSortProp")) {
+            Properties properties = new Properties();
+            properties.load(reader);
+            byDefaultSortValue = properties.getProperty("sortType");
+        } catch (Exception exception) {
+            System.out.println("File not found!!!");
+        }
+        return SortType.valueOf(byDefaultSortValue);
     }
 }

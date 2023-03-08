@@ -1,3 +1,4 @@
+package IMPL;
 import java.util.Scanner;
 
 public class Scan {
