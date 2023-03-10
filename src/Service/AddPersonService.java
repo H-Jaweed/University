@@ -4,6 +4,7 @@ import IMPL.Scan;
 import Person.Person;
 import Person.Student;
 import Person.Teacher;
+import csvFiles.Data;
 
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -13,11 +14,12 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class AddPersonService {
-    private static void writeStudentData(String path,Student student) {
+    private static void writeStudentData(String path, Student student) {
         try {
             FileWriter fileWriter = new FileWriter(path, true);
             BufferedWriter writer = new BufferedWriter(fileWriter);
-            writer.write("\n" + student.hashCode() + "," + student.getName() + "," + student.getSurName() + "," + student.getBirthdate() + "," + student.getAdmisionDate() + "," + student.getAdmisionScore());
+            writer.write("\n" + student.hashCode() + "," + student.getName() + "," + student.getSurName() + "," +
+                               student.getBirthdate() + "," + student.getAdmisionDate() + "," + student.getAdmisionScore());
             writer.close();
         } catch (FileNotFoundException e) {
             System.err.println("File not found");
@@ -25,7 +27,8 @@ public class AddPersonService {
             System.err.println("Runtime exeption");
         }
     }
-    private static void writeTeachertData(String path,Teacher teacher) {
+
+    private static void writeTeachertData(String path, Teacher teacher) {
         try {
             FileWriter fileWriter = new FileWriter(path, true);
             BufferedWriter writer = new BufferedWriter(fileWriter);
@@ -39,7 +42,7 @@ public class AddPersonService {
     }
 
 
-    public static void add(String personType) {
+    public static void addPerson(String personType) {
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         Person person = PersonFactory.getPerson(personType);
         String name = Scan.getScannerString("Enter Name :");
@@ -49,12 +52,12 @@ public class AddPersonService {
             int admisionScore = Scan.getScannerInt("Enter your admission score :");
             LocalDate admisionDate = LocalDate.parse(Scan.getScannerString("Enter your admision date: "), dateTimeFormatter);
             Student student = new Student(name, surName, admisionScore, birhdate, admisionDate);
-            writeStudentData("University/src/csvFiles/csvStudent.csv",student);
+            writeStudentData(Data.studentPath, student);
             System.out.println("successful");
         } else if (person instanceof Teacher) {
             String subject = Scan.getScannerString("Enter subject: ");
             Teacher teacher = new Teacher(name, surName, birhdate, subject);
-            writeTeachertData("University/src/csvFiles/csvTeacher.csv", teacher);
+            writeTeachertData(Data.teacherPath, teacher);
             System.out.println("successful");
         }
         System.out.println();

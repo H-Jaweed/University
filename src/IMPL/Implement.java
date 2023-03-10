@@ -1,8 +1,7 @@
 package IMPL;
 
-import Person.Student;
-import Person.Teacher;
 import Service.AddPersonService;
+import Service.DeletePersonService;
 import Service.SearchPersonService;
 import Service.ShowAllPersonService;
 
@@ -21,16 +20,16 @@ public class Implement {
             int selectedMenu = Scan.getScannerInt("Choose menu: ");
             switch (selectedMenu) {
                 case 1:
-                    AddPersonService.add("Teacher");
+                    AddPersonService.addPerson("Teacher");
                     break;
                 case 2:
-                    AddPersonService.add("Student");
+                    AddPersonService.addPerson("Student");
                     break;
                 case 3:
-                    ShowAllPersonService.showAll("Teacher");
+                    ShowAllPersonService.showPerson("Teacher");
                     break;
                 case 4:
-                    ShowAllPersonService.showAll("Student");
+                    ShowAllPersonService.showPerson("Student");
                     break;
                 case 5:
                     SearchPersonService.searchPerson("Teacher");
@@ -39,10 +38,10 @@ public class Implement {
                     SearchPersonService.searchPerson("Student");
                     break;
                 case 7:
-                    //    personService.deleteByID(student);
+                    DeletePersonService.deletePerson("Teacher");
                     break;
                 case 8:
-                    //      personService.deleteByID(teacher);
+                    DeletePersonService.deletePerson("Student");
                     break;
                 case 9:
                     exit = false;
@@ -52,4 +51,7 @@ public class Implement {
             }
         }
     }
-}
+}/*
+ID, Name,Surname,Birthday,Subject
+        226,Ismayil,Azizov,1995-05-14,Java Practic
+        223,Ulvi,Aghajanov,1988-01-12,Java Theory*/
